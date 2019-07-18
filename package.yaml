@@ -45,7 +45,7 @@ executables:
 
 tests:
   prismatic-test:
-    main:                Spec.hs
+    main:                Driver.hs
     source-dirs:         test
     ghc-options:
     - -threaded
@@ -53,4 +53,9 @@ tests:
     - -with-rtsopts=-N
     - -Wall
     dependencies:
+    - lens-aeson
     - prismatic
+    - tasty
+    - tasty-discover
+    - tasty-hspec
+    - tasty-hedgehog

@@ -31,7 +31,9 @@ import qualified Data.ByteString.Lazy     as Lazy
 import qualified Data.Colour.RGBSpace     as C.RGB
 import qualified Data.Colour.RGBSpace.HSL as C.HSL
 import           Data.Data                         ( Data )
-import           Data.Data.Lens                    ( biplate )
+import           Data.Data.Lens                    ( biplate
+                                                   , uniplate
+                                                   )
 import           Data.String.Conversions           ( cs )
 import           Data.Text                         ( Text )
 import qualified Data.Text.Lazy           as Lazy  ( Text )
@@ -56,6 +58,12 @@ data HSL = HSL
 
 makeLenses ''RGB
 makeLenses ''HSL
+
+instance Plated RGB where
+  plate = uniplate
+
+instance Plated HSL where
+  plate = uniplate
 
 class AsHSL a where
   _HSL :: Prism' a HSL

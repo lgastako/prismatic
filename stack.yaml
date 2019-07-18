@@ -4,4 +4,5 @@ packages:
 - .
 
 extra-deps:
-- ghc-justdoit-0.1.0.1@sha256:7de518fbc2ed84113042f5743f263f83ad67e0247f067de0f57b994bc36ccf52
+- hedgehog-1.0@sha256:440dafedac48a34eac3871f8622b215462cfc0708536cb0458b7a8cf38247c69
+- tasty-hedgehog-1.0.0.1@sha256:cdcf60a29195bd0d819d3018c11db2e0deb7c6e559ad940c49409a5a7a982f83
