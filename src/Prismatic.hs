@@ -6,10 +6,10 @@
 module Prismatic
   ( AsHSL
   , AsRGB
-  , HSL
+  , HSL(HSL)
   , IsHSL
   , IsRGB
-  , RGB
+  , RGB(RGB)
   , _HSL
   , _RGB
   , blue
