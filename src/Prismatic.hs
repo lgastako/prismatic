@@ -33,9 +33,8 @@ import qualified Data.Text.Lazy           as Lazy  ( Text )
 import           Numeric                           ( readHex )
 import           Text.Printf                       ( printf )
 
--- TODO convert red, green, blue, hue, saturation, lightness to work
--- on any AsRGB, so you can just do, eg:
--- "#000000" & red +~ 128
+-- TODO Consider eliminating the IsHSL and IsRGB stuff or replacing them
+-- with traversals
 
 data RGB = RGB
   { _red'   :: Int
