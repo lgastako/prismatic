@@ -13,8 +13,6 @@ module Prismatic
   , _HSL
   , _RGB
   , blue
-  , decodeRGB
-  , encodeRGB
   , green
   , hsl
   , hue
