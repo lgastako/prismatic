@@ -1,9 +1,9 @@
 # prismatic
 
+Data types and optics for manipulating HTML color codes.
+
 > My work is a self-portrait of my mind, a prism of my convictions.
 > - Fernando Botero
-
-Data types and optics for manipulating HTML color codes.
 
 ## Examples
 
