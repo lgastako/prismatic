@@ -1,10 +1,10 @@
 name:                prismatic
 version:             0.1.0.0
-github:              "githubuser/prismatic"
+github:              "lgastako/prismatic"
 license:             BSD3
-author:              "Author name here"
-maintainer:          "example@example.com"
-copyright:           "2019 Author name here"
+author:              "John Evans"
+maintainer:          "lgastako@gmail.com"
+copyright:           "2019 John Evans"
 
 extra-source-files:
 - README.md
@@ -17,22 +17,29 @@ extra-source-files:
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
 # common to point users to the README.md file.
-description:         Please see the README on GitHub at <https://github.com/githubuser/prismatic#readme>
+description:         README at <https://github.com/lgastako/prismatic#readme>
 
 dependencies:
 - base >= 4.7 && < 5
+- bytestring
+- colour
+- lens
+- string-conversions
+- text
+- word8
 
 library:
   source-dirs: src
 
 executables:
-  prismatic-exe:
+  prismatic:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    - -Wall
     dependencies:
     - prismatic
 
@@ -44,5 +51,6 @@ tests:
     - -threaded
     - -rtsopts
     - -with-rtsopts=-N
+    - -Wall
     dependencies:
     - prismatic

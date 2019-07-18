@@ -1,6 +1,6 @@
 module Main where
 
-import Lib
+-- import Prismatic
 
 main :: IO ()
-main = someFunc
+main = putStrLn "Prismatic app coming soon."
