@@ -1,3 +1,5 @@
+{-# LANGUAGE DeriveDataTypeable   #-}
+{-# LANGUAGE DeriveGeneric        #-}
 {-# LANGUAGE FlexibleInstances    #-}
 {-# LANGUAGE InstanceSigs         #-}
 {-# LANGUAGE TemplateHaskell      #-}
@@ -13,6 +15,7 @@ module Prismatic
   , _HSL
   , _RGB
   , blue
+  , colors
   , green
   , hsl
   , hue
@@ -27,9 +30,12 @@ import           Data.ByteString                   ( ByteString )
 import qualified Data.ByteString.Lazy     as Lazy
 import qualified Data.Colour.RGBSpace     as C.RGB
 import qualified Data.Colour.RGBSpace.HSL as C.HSL
+import           Data.Data                         ( Data )
+import           Data.Data.Lens                    ( biplate )
 import           Data.String.Conversions           ( cs )
 import           Data.Text                         ( Text )
 import qualified Data.Text.Lazy           as Lazy  ( Text )
+import           GHC.Generics                      ( Generic )
 import           Numeric                           ( readHex )
 import           Text.Printf                       ( printf )
 
@@ -40,13 +46,13 @@ data RGB = RGB
   { _red'   :: Int
   , _green' :: Int
   , _blue'  :: Int
-  } deriving (Eq, Ord, Read, Show)
+  } deriving (Eq, Data, Generic, Ord, Read, Show)
 
 data HSL = HSL
   { _hue'        :: Double
   , _saturation' :: Double
   , _lightness'  :: Double
-  } deriving (Eq, Ord, Read, Show)
+  } deriving (Eq, Data, Generic, Ord, Read, Show)
 
 makeLenses ''RGB
 makeLenses ''HSL
@@ -129,6 +135,9 @@ instance AsHSL Lazy.ByteString where
 
 instance AsHSL Lazy.Text where
   _HSL = _RGB . hsl
+
+colors :: AsRGB a => Traversal' a Int
+colors = _RGB . biplate
 
 red :: AsRGB a => Traversal'  a Int
 red = _RGB . red'

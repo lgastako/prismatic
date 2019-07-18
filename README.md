@@ -19,6 +19,10 @@ Data types and optics for manipulating HTML color codes.
     λ> "#ff33cc" & saturation -~ 0.1
     "#10e23d3"
 
+    λ> "#223344" & colors *~ 2
+    "#446688"
+
+
 ## Examples (Old and Busted... but still work)
 
     λ> "#ff33cc" ^? _RGB
