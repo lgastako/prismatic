@@ -40,15 +40,15 @@ import           Text.Printf                       ( printf )
 -- "#000000" & red +~ 128
 
 data RGB = RGB
-  { _red   :: Int
-  , _green :: Int
-  , _blue  :: Int
+  { _red'   :: Int
+  , _green' :: Int
+  , _blue'  :: Int
   } deriving (Eq, Ord, Read, Show)
 
 data HSL = HSL
-  { _hue        :: Double
-  , _saturation :: Double
-  , _lightness  :: Double
+  { _hue'        :: Double
+  , _saturation' :: Double
+  , _lightness'  :: Double
   } deriving (Eq, Ord, Read, Show)
 
 makeLenses ''RGB
@@ -97,6 +97,9 @@ decodeRGBStr _ = Nothing
 fromHex :: String -> Int -- TODO maybe
 fromHex = fst . head . readHex
 
+instance AsRGB RGB where
+  _RGB = id
+
 instance AsRGB ByteString where
   _RGB = prism encodeRGB (maybeEither decodeRGB)
 
@@ -112,6 +115,9 @@ instance AsRGB Lazy.ByteString where
 instance AsRGB Lazy.Text where
   _RGB = prism (cs . encodeRGB) (maybeEither (decodeRGB . cs))
 
+instance AsHSL HSL where
+  _HSL = id
+
 instance AsHSL ByteString where
   _HSL = _RGB . hsl
 
@@ -126,6 +132,24 @@ instance AsHSL Lazy.ByteString where
 
 instance AsHSL Lazy.Text where
   _HSL = _RGB . hsl
+
+red :: AsRGB a => Traversal'  a Int
+red = _RGB . red'
+
+green :: AsRGB a => Traversal'  a Int
+green = _RGB . green'
+
+blue :: AsRGB a => Traversal'  a Int
+blue = _RGB . blue'
+
+hue :: AsHSL a => Traversal'  a Double
+hue = _HSL . hue'
+
+saturation :: AsHSL a => Traversal'  a Double
+saturation = _HSL . saturation'
+
+lightness :: AsHSL a => Traversal'  a Double
+lightness = _HSL . lightness'
 
 hsl' :: Iso' RGB HSL
 hsl' = iso rgbToHsl hslToRgb

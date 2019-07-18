@@ -5,7 +5,21 @@ Data types and optics for manipulating HTML color codes.
 > My work is a self-portrait of my mind, a prism of my convictions.
 > - Fernando Botero
 
-## Examples
+## Examples (New Hotness)
+
+    λ> "#ff33cc" & red -~ 50
+    "#cd33cc"
+
+    λ> "#ff33cc" ^? green
+    Just 51
+
+    λ> "#ff33cc" & hue +~ 0.5
+    "#ff33ca"
+
+    λ> "#ff33cc" & saturation -~ 0.1
+    "#10e23d3"
+
+## Examples (Old and Busted... but still work)
 
     λ> "#ff33cc" ^? _RGB
     Just (RGB {_red = 255, _green = 51, _blue = 204})
